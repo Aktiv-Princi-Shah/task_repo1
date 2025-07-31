@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- member action -->
+    <record id="library_member_view" model="ir.actions.act_window">
+        <field name="name">Library member</field>
+        <field name="res_model">member</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- member list view -->
+    <record id="library_member_view_list" model="ir.ui.view">
+        <field name="name">library.member.list</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- member form view -->
+    <record id="library_member_view_form" model="ir.ui.view">
+        <field name="name">library.member.form</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <form string="Member Details">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="membership_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
