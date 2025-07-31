@@ -4,7 +4,7 @@
     'author': 'Princi',
     'website': 'https://www.prihhhh.com',
     'category': 'Library',
-    'depends': [],
+    'depends': ['base','web'],
     'data': [
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
