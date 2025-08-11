@@ -6,7 +6,6 @@ class LibraryMember(models.Model):
     Class method for members including :
     1) many2one relational field for book
     """
-
     _name = 'library.members'
     _description = 'Library Members'
 
