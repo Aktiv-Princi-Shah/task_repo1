@@ -3,7 +3,8 @@ from odoo import models, fields
 
 class BookCategory(models.Model):
     """
-    Class method for book category including many2one relational field for books
+    :define: Class method for book category including many2one relational field for books
+    :returns: None
     """
     _name = 'library.book.category'
     _description = 'Book Category'
