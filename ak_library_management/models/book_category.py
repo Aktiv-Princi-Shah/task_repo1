@@ -12,4 +12,4 @@ class BookCategory(models.Model):
 
     name = fields.Char(string='Category', required=True)
     # relational field for book category to tags
-    tag_ids = fields.Many2many('library.book.tag', string='Tags')
+    tag_ids = fields.Many2many(comodel_name='library.book.tag', string='Tags')

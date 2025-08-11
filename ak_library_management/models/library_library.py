@@ -14,7 +14,7 @@ class Library(models.Model):
     capacity = fields.Integer(string='Capacity', required=True)
     notes = fields.Text(string='Notes')
     # relational field for library and books
-    book_ids = fields.One2many('library.book', 'library_id', string='Books in Library')
+    book_ids = fields.One2many(comodel_name='library.book', inverse_name='library_id', string='Books in Library')
 
     # Applying compute method to calculate the number of books entered
     book_count = fields.Integer(string='Book Count', compute='_compute_book_count', store=True)

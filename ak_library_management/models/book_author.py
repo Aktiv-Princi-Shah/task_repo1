@@ -11,4 +11,4 @@ class BookAuthor(models.Model):
 
     name = fields.Char(string='Author', required=True)
     # relational field for book and author
-    book_member_id = fields.Many2one('library.book', string='Book')
+    book_member_id = fields.Many2one(comodel_name='library.book', string='Book')
