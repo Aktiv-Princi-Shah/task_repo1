@@ -15,15 +15,23 @@ class Library(models.Model):
     notes = fields.Text(string='Notes')
     # relational field for library and books
     book_ids = fields.One2many('library.book', 'library_id', string='Books in Library')
-
     # Applying compute method to calculate the number of books entered
-    book_count = fields.Integer(string='Book Count', compute='_compute_book_count', store=True)
-    capacity_status = fields.Char(string='Capacity Status', compute='_compute_capacity_status', store=True)
+    book_count = fields.Integer(string='Book Count',
+                                compute='_compute_book_count',
+                                store=True)
+    capacity_status = fields.Char(string='Capacity Status',
+                                  compute='_compute_capacity_status',
+                                  store=True)
+    # Compute method for borrowed book count to show message
+    borrowed_book_count = fields.Integer(string='Borrowed Books',
+                                         compute='_compute_borrowed_book_count')
 
     @api.depends('book_ids')
     def _compute_book_count(self):
         """
-        function helps calculate the number of books in library
+        :define: function helps calculate the number of books in library
+        :param: self
+        :return: self
         """
         for record in self:
             record.book_count = len(record.book_ids)
@@ -32,7 +40,9 @@ class Library(models.Model):
     @api.depends('book_count', 'capacity')
     def _compute_capacity_status(self):
         """
-        function helps calculate the capacity status and perform criteria based message in the library view
+        :define: function helps calculate the capacity status and perform criteria based message in the library view
+        :param: self
+        :return: self
         """
         for record in self:
             if record.capacity == 0:
@@ -45,3 +55,13 @@ class Library(models.Model):
                     record.capacity_status = 'Warning'
                 else:
                     record.capacity_status = 'Full'
+
+    @api.depends('book_ids.book_state')
+    def _compute_borrowed_book_count(self):
+        """
+        :define: function helps calculate the number of borrowed books in library
+        :param: self
+        :return: self
+        """
+        for library in self:
+            library.borrowed_book_count = len(library.book_ids.filtered(lambda book: book.book_state == 'borrowed'))

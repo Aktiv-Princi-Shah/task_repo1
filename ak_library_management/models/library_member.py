@@ -3,8 +3,7 @@ from odoo import models, fields
 
 class LibraryMember(models.Model):
     """
-    Class method for members including :
-    1) many2one relational field for book
+    :define : class method containing the book borrowed member id using relation to library book model
     """
     _name = 'library.members'
     _description = 'Library Members'
