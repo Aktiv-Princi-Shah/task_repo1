@@ -9,15 +9,15 @@ class Book(models.Model):
     name = fields.Char(string='Title', required=True)
     date_release = fields.Date(string='Publication Date')
     # relational field for book and member
-    member_ids = fields.One2many(comodle_name='library.members', inverse_name='book_member_id', string='Members')
+    member_ids = fields.One2many(comodel_name='library.members', inverse_name='book_member_id', string='Members')
     # relational field for book and authors
-    author_ids = fields.One2many(comodle_name='library.author', inverse_name='book_member_id', string='Authors')
+    author_ids = fields.One2many(comodel_name='library.author', inverse_name='book_member_id', string='Authors')
     # relational field for books and category
-    category_id = fields.Many2one(comodle_name='library.book.category', string='Category')
+    category_id = fields.Many2one(comodel_name='library.book.category', string='Category')
     # relational field for books and library
-    library_id = fields.Many2one(comodle_name='library.library', string='Library')
+    library_id = fields.Many2one(comodel_name='library.library', string='Library')
     # relational field for books and tags
-    tag_ids = fields.Many2many(comodle_name='library.book.tag', related='category_id.tag_ids',string='Tags')
+    tag_ids = fields.Many2many(comodel_name='library.book.tag', related='category_id.tag_ids',string='Tags')
     isbn_number = fields.Char(string='ISBN')
     book_description = fields.Text(string='Book Description')
     book_state = fields.Selection([('available', 'Available'),('borrowed', 'Borrowed'),('reserved', 'Reserved')],
@@ -31,7 +31,7 @@ class Book(models.Model):
     @api.depends('member_ids')
     def _compute_book_state(self):
         """
-        define: method to compute book state
+        :define: method to compute book state
         :param: self
         :return: self
         """
