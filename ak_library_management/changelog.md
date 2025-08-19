@@ -2,7 +2,7 @@
  
 ### Technical Name: ak_library_management
  
-## [18.0.1.1.0] - 2025-08-05 | Odoo buttons and smart buttons
+## [18.0.1.2.0] - 2025-08-19 | Odoo buttons and smart buttons
 - Add a Status Button in the Book Model 
 - Modify the Book model (product.template) to include a status field and a button to change the status.
 The status should have the following values:
