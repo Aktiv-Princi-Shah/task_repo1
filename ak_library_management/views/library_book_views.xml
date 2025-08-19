@@ -1,14 +1,14 @@
 <odoo>
-<!--    library book action-->
+    <!--library book action-->
     <record id="library_book_action" model="ir.actions.act_window">
-        <field name="name">Library Books</field>
+        <field name="name">Books</field>
         <field name="res_model">library.book</field>
         <field name="view_mode">list,form</field>
     </record>
 
-<!--    library form view-->
+    <!--library form view-->
     <record id="library_book_view_form" model="ir.ui.view">
-        <field name="name">Library Book Form</field>
+        <field name="name">Form</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
             <form>
@@ -31,9 +31,9 @@
         </field>
     </record>
 
-<!--    library list view-->
+    <!--library list view-->
     <record id="library_book_view_list" model="ir.ui.view">
-        <field name="name">Library Book List</field>
+        <field name="name">List</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
             <list>
@@ -51,9 +51,9 @@
         </field>
     </record>
 
-<!--    library book search view-->
+    <!--library book search view-->
     <record id="library_book_view_search" model="ir.ui.view">
-        <field name="name">Library Book Search</field>
+        <field name="name">Search</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
             <search>
