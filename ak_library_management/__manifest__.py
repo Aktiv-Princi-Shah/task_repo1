@@ -6,7 +6,7 @@
     'website': 'https://www.aktivsoftware.com',
     'description': """Create a Library Management module in Odoo that includes two custom models, two separate
 menus, and basic Odoo fields with list and form views.""",
-    'depends': ['base','web','sale'],
+    'depends': ['base','web','sale_management'],
     'data': [
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
