@@ -4,4 +4,3 @@ access_library_book_category,library_book_category,model_library_book_category,,
 access_library_member,library_book_category,model_library_members,,1,1,1,1
 access_library_book_author,library_book_author,model_library_author,,1,1,1,1
 access_library_library,library_library,model_library_library,,1,1,1,1
-

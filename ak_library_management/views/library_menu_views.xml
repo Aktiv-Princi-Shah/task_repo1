@@ -1,29 +1,29 @@
 <odoo>
-    <!--    library main parent menu-->
+    <!--library main parent menu-->
     <menuitem name="Library Management"
               id="library_base_menu"/>
 
-    <!--    library parent sub menu 1-->
+    <!--library parent sub menu 1-->
     <menuitem name="Library"
-              id="library_menu1"
+              id="library_sub_menu_1"
               parent="library_base_menu"
               sequence="2"/>
 
-    <!--    library parent sub menu 2-->
+    <!--library parent sub menu 2-->
     <menuitem name="Members"
-              id="library_menu2"
+              id="library_sub_menu_2"
               parent="library_base_menu"
               sequence="4"/>
 
-    <!--    library child menus-->
+    <!--library child menus-->
     <menuitem name="Libraries"
               id="library_library_menu"
-              parent="library_menu1"
+              parent="library_sub_menu_1"
               action="library_library_action"/>
 
     <menuitem name="Books"
               id="library_book_menu"
-              parent="library_menu1"
+              parent="library_sub_menu_1"
               action="library_book_action"/>
 
     <menuitem name="Category"
@@ -33,7 +33,7 @@
 
     <menuitem name="Members"
               id="library_member_menu"
-              parent="library_menu2"
+              parent="library_sub_menu_2"
               action="library_member_action"/>
 
     <menuitem name="Author"
