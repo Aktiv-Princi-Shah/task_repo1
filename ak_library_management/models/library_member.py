@@ -2,10 +2,7 @@
 from odoo import models, fields
 
 class LibraryMember(models.Model):
-    """
-    :define: Class method for members including relation towards library
-    :returns: None
-    """
+
     _name = 'library.members'
     _description = 'Library Members'
 

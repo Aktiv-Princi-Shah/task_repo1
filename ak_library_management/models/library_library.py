@@ -2,50 +2,42 @@
 from odoo import models, fields, api
 
 class Library(models.Model):
-    """
-    :define: Library model holds information about a physical library. Like, One library can have multiple books
-    :returns: None
-    """
+
     _name = 'library.library'
     _description = 'Different Libraries'
 
-    name = fields.Char(string='Name', required=True)
-    location = fields.Char(string='Location', required=True)
-    capacity = fields.Integer(string='Capacity', required=True)
-    notes = fields.Text(string='Notes')
-    # relational field for library and books
-    book_ids = fields.One2many(comodel_name='library.book', inverse_name='library_id', string='Books in Library')
-
-    # Applying compute method to calculate the number of books entered
+    name = fields.Char(string='Library Name', required=True)
+    location = fields.Char(string='Library Location', required=True)
+    capacity = fields.Integer(string='Library Capacity', required=True)
+    book_ids = fields.One2many(comodel_name='library.book', inverse_name='library_id',
+                               string='Books in Library')
     book_count = fields.Integer(string='Book Count', compute='_compute_book_count', store=True)
     capacity_status = fields.Char(string='Capacity Status', compute='_compute_capacity_status', store=True)
 
     @api.depends('book_ids')
     def _compute_book_count(self):
         """
-        :define: function helps calculate the number of books in library
-        :params: self
-        :returns: self
+        define:_compute_book_count
+        description: Book count according to books present in the library.
+        params: book_ids
+        returns: book_count
         """
         for record in self:
             record.book_count = len(record.book_ids)
-            print(f"the library name: {Library.name}: the available book count{Library.book_count}")
 
-    @api.depends('book_count', 'capacity')
+    @api.depends('book_ids', 'capacity')
     def _compute_capacity_status(self):
         """
-        :define: function helps calculate the capacity status and perform criteria based message in the library view
-        :params: self
-        :returns: self status
+        define:_compute_capacity_status
+        description: Book capacity status according to books present in the library.
+        params: book_ids, capacity
+        returns: capacity_status
         """
         for record in self:
-            if record.capacity == 0:
-                record.capacity_status = 'Available'
+            ratio = record.book_count / record.capacity
+            if ratio < 0.8:
+                record.capacity_status = 'Normal'
+            elif (ratio >= 0.8) and (ratio < 1.0):
+                record.capacity_status = 'Warning'
             else:
-                ratio = record.book_count / record.capacity
-                if ratio < 0.8:
-                    record.capacity_status = 'Normal'
-                elif ratio < 1.0:
-                    record.capacity_status = 'Warning'
-                else:
-                    record.capacity_status = 'Full'
+                record.capacity_status = 'Full'
